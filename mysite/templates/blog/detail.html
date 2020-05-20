@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myblog-article</title>
+</head>
+<body>
+<h1>{{ post.title }}</h1>
+<h6>{{ post.created_time }}</h6>
+<h4>{{ post.body }}</h4>
+{% load comments_extras %}
+<h3>发表评论</h3>
+{% show_comment_form post %}
+<div class="comment-list-panel">
+    {% show_comments post %}
+</div>
+</body>
+</html>
