@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Template • TodoMVC</title>
+		<link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+		<link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+		<!-- CSS overrides - remove if you don't need it -->
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+		<section id="todoapp">
+			<header class="header">
+				<h1>todos</h1>
+				<input v-model="inputValue" @keyup.enter="add" class="new-todo" placeholder="What needs to be done?" autofocus>
+			</header>
+			<!-- This section should be hidden by default and shown when there are todos -->
+			<section class="main">
+				<input id="toggle-all" class="toggle-all" type="checkbox">
+				<label for="toggle-all">Mark all as complete</label>
+				<ul class="todo-list">
+					<li v-for="(item, index) in list">
+						<div class="view">
+							<label>{{ item }}</label>
+							<button class="destroy" @click="remove(index)"></button>
+						</div>
+						<input class="edit" value="Rule the web">
+					</li>
+				</ul>
+			</section>
+			<!-- This footer should hidden by default and shown when there are todos -->
+			<footer class="footer" v-if="list.length!=0">
+				<!-- This should be `0 items left` by default -->
+				<span class="todo-count"><strong>{{ list.length }}</strong> item left</span>
+				<button class="clear-completed" @click="clear">Clear</button>
+			</footer>
+		</section>
+		<footer class="info">
+			<!-- Change this out with your name and url ↓ -->
+			<p>Created by <a href="http://todomvc.com">zhenghong ge</a></p>
+			<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+		</footer>
+		<!-- Scripts here. Don't remove ↓ -->
+		<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
+		
+		<script>
+			var app = new Vue({
+				el:"#todoapp",
+				data:{
+					list:["test1","test2","test3"],
+					inputValue:""
+				},
+
+				methods:{
+					add:function(){
+						this.list.push(this.inputValue);
+					},
+
+					remove:function(index){
+						console.log(index)
+						this.list.splice(index, 1)
+					},
+
+					clear:function(){
+						this.list=[]
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
